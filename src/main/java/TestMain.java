@@ -1,22 +1,35 @@
+import org.apache.poi.ss.usermodel.Workbook;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestMain {
+
+    static public class A{
+        static protected int i=1;
+    }
+    static public class B extends A{
+        static protected int i;
+        static {
+            i=2;
+        }
+    }
+    static public class C extends A{
+        static {
+            i=3;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
        /* Class<TestExcelBean> beanClass = TestExcelBean.class;
         TestExcelBean testExcelBean = beanClass.newInstance();
         Method method = beanClass.getMethod("setName",String.class);
         method.invoke(testExcelBean,"brush");
         System.out.println(testExcelBean.getName());*/
-        ArrayList<ExcelCell> excelCells = new ArrayList<ExcelCell>();
-        excelCells.add(new ExcelCell("name",1, ExcelCell.Type.STRING));
-        excelCells.add(new ExcelCell("id",0,ExcelCell.Type.INTE));
-        excelCells.add(new ExcelCell("date",2,ExcelCell.Type.DATE));
-        ExcelRow<TestExcelBean> testExcelBeanExcelRow = new ExcelRow<TestExcelBean>(excelCells,null);
-        List<TestExcelBean> excelBean = testExcelBeanExcelRow.parse();
-        System.out.println(excelBean);
-
+        System.out.println("A"+A.i);
+        System.out.println("B"+B.i);
+        System.out.println("C"+C.i);
     }
 }

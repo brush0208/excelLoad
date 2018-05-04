@@ -1,14 +1,17 @@
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.util.StringUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author 汉清
+ * @date 2018-05-04
+ * @param <T>
+ */
 public class ExcelRow<T>  {
 
     private List<ExcelCell> Cells;
@@ -45,7 +48,7 @@ public class ExcelRow<T>  {
             Field field = clzz.getDeclaredField(cell.getName());
             field.setAccessible(true);
             Cell cell1 = row.getCell(cell.getColumn());
-            Object cellValue = cell.getType().getCellValue(cell1);
+            Object cellValue = cell.getCType().getCellValue(cell1);
             field.set(instance,cellValue);
         }
 

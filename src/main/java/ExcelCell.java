@@ -1,18 +1,20 @@
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.ss.formula.functions.T;
-import org.apache.poi.ss.usermodel.Cell;
+/**
+ * @author 汉清
+ * 2018-05-04
+ *
+ */
+import org.brush.exload.util.CType;
+import org.brush.exload.util.interfaces.Cell;
 
-import java.util.Date;
-
-public class ExcelCell {
+public class ExcelCell implements Cell{
     private String name;
     private int column;
-    private Type type;
+    private CType CType;
 
-    public ExcelCell(String name, int column, Type type) {
+    public ExcelCell(String name, int column, CType type) {
         this.name = name;
         this.column = column;
-        this.type = type;
+        this.CType = type;
     }
 
     public String getName() {
@@ -31,12 +33,12 @@ public class ExcelCell {
         this.column = column;
     }
 
-    public Type getType() {
-        return type;
+    public CType getCType() {
+        return CType;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setCType(CType CType) {
+        this.CType = CType;
     }
 
     /**
@@ -45,24 +47,9 @@ public class ExcelCell {
      * @param column
      */
     public ExcelCell(String name, int column) {
-        this(name,column,Type.STRING);
+        this(name,column, CType.STRING);
     }
-    public enum Type{
-        STRING(String.class){ int getCellType(){return HSSFCell.CELL_TYPE_STRING;}
-                                Object getCellValue(Cell cell){return cell.getStringCellValue();}},
-        DATE(Date.class){int getCellType(){return HSSFCell.CELL_TYPE_NUMERIC;}
-                        Object getCellValue(Cell cell){return cell.getDateCellValue();}},
-        INTE(Integer.class){int getCellType(){return HSSFCell.CELL_TYPE_NUMERIC;}
-                            Object getCellValue(Cell cell){return Double.valueOf(cell.getNumericCellValue()).intValue();}};
-        Type(Class<?> clzz) {
-            this.clzz = clzz;
-        }
-        Class<?> clzz;
-        public Class<?> getClzz(){return clzz;}
 
-        abstract int  getCellType();
-        abstract Object getCellValue(Cell cell);
-    }
 
 
 }
