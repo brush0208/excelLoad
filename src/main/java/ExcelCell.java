@@ -46,9 +46,9 @@ public class ExcelCell implements Cell{
      * @param name
      * @param column
      */
-    public ExcelCell(String name, int column) {
+   /* public ExcelCell(String name, int column) {
         this(name,column, CType.STRING);
-    }
+    }*/
 
 
 

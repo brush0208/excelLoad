@@ -31,5 +31,8 @@ public class TestMain {
         System.out.println("A"+A.i);
         System.out.println("B"+B.i);
         System.out.println("C"+C.i);
+        List<? extends C> list=new ArrayList<>();
+        List<A> Alist=new ArrayList<>();
+        Alist.add(new B());
     }
 }
